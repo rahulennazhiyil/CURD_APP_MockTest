@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # MocktestProject
 
 This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 19.1.8.
@@ -57,3 +58,6 @@ Angular CLI does not come with an end-to-end testing framework by default. You c
 ## Additional Resources
 
 For more information on using the Angular CLI, including detailed command references, visit the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
+=======
+# CURD_APP_MockTest
+>>>>>>> 6b78a1dc3d40966c6a29e7085d74cd90293e9570
