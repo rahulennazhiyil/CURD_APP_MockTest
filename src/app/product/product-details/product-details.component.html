@@ -1,0 +1,61 @@
+<section class="d-flex justify-content-center align-items-center flex-column vh-100">
+  <!-- <div *ngIf="product" class="card w-50 btn btn-outline-primary">
+    <h2>{{ product.name }}</h2>
+    <p>{{ product.price | currency }}</p>
+    <p>{{ product.description }}</p> -->
+  <!-- <a [routerLink]="['/products', product.id, 'edit']">Edit</a> -->
+
+  <!-- <button type="button" class="btn btn-danger">Danger</button> -->
+  <!-- </div> -->
+
+  <div class="d-flex w-50 justify-content-between mb-3">
+    <button *ngIf="(product && !isEdit) || productId == ''" type="button" class="btn btn-outline-dark" [routerLink]="['/product/list']">Go Back</button>
+    <button *ngIf="product && isEdit" type="button" class="btn btn-outline-secondary" (click)="this.isEdit =false">Cancel</button>
+  </div>
+
+  <div *ngIf="product && !isEdit" class="card w-50 border border-secondary">
+    <div class="card-body">
+      <h2 class="card-title">{{ product.name }}</h2>
+      <p class="card-text">{{ product.price | currency }}</p>
+      <p class="card-text">{{ product.description }}</p>
+      <button type="button" class="btn btn-outline-primary" (click)="onEdit()">Edit</button>
+    </div>
+  </div>
+
+  <div class="card w-50 border border-secondary" *ngIf="isEdit">
+    <form class="d-flex justify-content-start flex-column gap-4 p-3" [formGroup]="productForm">
+      <div class="d-flex flex-column">
+        <div class="input-group">
+          <span class="input-group-text" for="name">Name:</span>
+          <input type="text" class="form-control" placeholder="Name" aria-label="name" id="name" formControlName="name">
+        </div>
+        <div class="text-danger" *ngIf="productForm.get('name')?.invalid && productForm.get('name')?.touched">
+          Name is required.
+        </div>
+      </div>
+
+      <div class="d-flex flex-column">
+        <div class="input-group">
+          <span class="input-group-text" for="price">Price:</span>
+          <input class="form-control" placeholder="price" aria-label="price" id="price" type="number" formControlName="price" aria-label="Amount (to the nearest dollar)">
+          <span class="input-group-text">$</span>
+        </div>
+        <div class="text-danger" *ngIf="productForm.get('price')?.invalid && productForm.get('price')?.touched">
+          Price must be a positive number.
+        </div>
+      </div>
+
+      <div class="d-flex flex-column">
+        <div class="input-group">
+          <span class="input-group-text" for="description">Description:</span>
+          <textarea class="form-control" id="description" formControlName="description" aria-label="With textarea"></textarea>
+        </div>
+      </div>
+
+      <div class="d-flex justify-content-center gap-2">
+        <button type="button" class="btn btn-outline-info me-2" (click)="reset()">Reset</button>
+        <button type="button" class="btn btn-outline-success" (click)="onSubmit()">Save</button>
+      </div>
+    </form>
+  </div>
+</section>
